@@ -1,6 +1,6 @@
 # Public EC2 instance
 resource "aws_instance" "public" {
-  ami                         = var.public_ami_id   # custom AMI
+  ami                         = var.public_ami_id # custom AMI
   key_name                    = "him"
   instance_type               = var.instance_type
   subnet_id                   = var.public_subnet
@@ -14,7 +14,7 @@ resource "aws_instance" "public" {
 
 # Private EC2 instance
 resource "aws_instance" "private" {
-  ami                         = var.private_ami_id  # Amazon Linux 2023 AMI
+  ami                         = var.private_ami_id # Amazon Linux 2023 AMI
   key_name                    = "him"
   instance_type               = var.instance_type
   subnet_id                   = var.private_subnet

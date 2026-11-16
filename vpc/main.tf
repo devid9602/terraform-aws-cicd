@@ -1,20 +1,20 @@
 resource "aws_vpc" "this" {
   cidr_block = var.vpc_cidr
-  tags = { Name = "my-vpc" }
+  tags       = { Name = "my-vpc" }
 }
 
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = var.public_subnet
   map_public_ip_on_launch = true
-  tags = { Name = "public-subnet" }
+  tags                    = { Name = "public-subnet" }
 }
 
 resource "aws_subnet" "private" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = var.private_subnet
   map_public_ip_on_launch = false
-  tags = { Name = "private-subnet" }
+  tags                    = { Name = "private-subnet" }
 }
 
 resource "aws_internet_gateway" "this" {
