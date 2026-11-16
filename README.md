@@ -7,7 +7,7 @@ Despite the repository name, this project is a small AWS networking and EC2 lab.
 - VPC CIDR: `10.0.0.0/16`.
 - Public subnet: `10.0.1.0/24`, routed through an Internet Gateway.
 - Private subnet: `10.0.2.0/24`, with no NAT route.
-- Security group: TCP ports 80, 443, and 3000 are open to all IPv4 addresses. SSH (port 22) is disabled by default; set `ssh_allowed_cidrs` to trusted IPv4 CIDRs to enable it.
+- Security group: TCP ports 80 and 443 are open to all IPv4 addresses. SSH (port 22) and the example service on port 3000 are disabled by default; set `ssh_allowed_cidrs` or `service_3000_allowed_cidrs` to trusted IPv4 CIDRs only when needed.
 - EC2: one public and one private instance. The root configuration uses hard-coded AMI IDs, and the EC2 module uses the key pair name `him`.
 - Outputs: the public instance IP and private instance ID.
 
@@ -27,7 +27,7 @@ terraform validate
 terraform plan
 ```
 
-Only apply after reviewing the plan and confirming the account, region, networking, access rules, and expected cost. To enable SSH, supply a narrowly scoped `ssh_allowed_cidrs` value in a local `.tfvars` file; do not commit that file.
+Only apply after reviewing the plan and confirming the account, region, networking, access rules, and expected cost. To enable SSH or port 3000, supply narrowly scoped `ssh_allowed_cidrs` or `service_3000_allowed_cidrs` values in a local `.tfvars` file; do not commit that file.
 
 ## GitHub Actions
 
@@ -38,4 +38,4 @@ The automated apply was removed because this repository has no remote Terraform 
 
 ## Security limitations
 
-This is an educational starting point, not a production-ready network design. Ports 80, 443, and 3000 remain open to all IPv4 addresses, the private subnet has no NAT route, and the configuration contains environment-specific AMI IDs and a key pair name. Restrict ingress, configure private-subnet egress intentionally, and replace those values before deployment. Do not use the checked-in defaults for a production workload.
+This is an educational starting point, not a production-ready network design. Ports 80 and 443 remain open to all IPv4 addresses, the private subnet has no NAT route, and the configuration contains environment-specific AMI IDs and a key pair name. Restrict ingress, configure private-subnet egress intentionally, and replace those values before deployment. Do not use the checked-in defaults for a production workload.

@@ -3,3 +3,9 @@ variable "ssh_allowed_cidrs" {
   type        = list(string)
   default     = []
 }
+
+variable "service_3000_allowed_cidrs" {
+  description = "IPv4 CIDRs allowed to connect to the example service on port 3000. Empty disables this ingress."
+  type        = list(string)
+  default     = []
+}

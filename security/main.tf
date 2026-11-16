@@ -28,7 +28,7 @@ resource "aws_security_group" "this" {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.service_3000_allowed_cidrs
   }
 
   egress {

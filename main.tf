@@ -6,9 +6,10 @@ module "network" {
 }
 
 module "security" {
-  source            = "./security"
-  vpc_id            = module.network.vpc_id
-  ssh_allowed_cidrs = var.ssh_allowed_cidrs
+  source                     = "./security"
+  vpc_id                     = module.network.vpc_id
+  ssh_allowed_cidrs          = var.ssh_allowed_cidrs
+  service_3000_allowed_cidrs = var.service_3000_allowed_cidrs
 }
 
 data "aws_ami" "amazon_linux2" {
